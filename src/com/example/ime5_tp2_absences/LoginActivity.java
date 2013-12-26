@@ -25,6 +25,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private SharedPreferences preferences;
 	private GlobalState globalState;
 	
+	// test commit
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
