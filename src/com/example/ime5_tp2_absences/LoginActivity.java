@@ -1,6 +1,6 @@
 package com.example.ime5_tp2_absences;
 
-import model.User;
+import model.Users;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,11 +75,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 		EditText passEditText = (EditText) findViewById(R.id.login_edtPasse);
 		
 		if(!autoLoad) {		
-			globalState.setUser(new User());
+			globalState.setUser(new Users());
 		} 
 		
 		loginEditText.setText(globalState.getUser().getLogin());
-		passEditText.setText(globalState.getUser().getPass());
+		passEditText.setText(globalState.getUser().getPasse());
 		
 		Button okButton = (Button) findViewById(R.id.login_btnOK);
 		okButton.setEnabled(globalState.verifReseau());
@@ -135,7 +135,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	
 	private void getPreferences() {
 		save = preferences.getBoolean("remember", false);
-		globalState.setUser(new User(preferences.getString("login", ""), preferences.getString("passe", "")));
+		globalState.setUser(new Users(preferences.getString("login", ""), preferences.getString("passe", "")));
 	}
 	
 	private void savePreferences() {
@@ -143,7 +143,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		
 		if(save) {
 			preferences.edit().putString("login", globalState.getUser().getLogin());
-			preferences.edit().putString("passe", globalState.getUser().getPass());
+			preferences.edit().putString("passe", globalState.getUser().getPasse());
 		} else {
 			preferences.edit().putString("login", "");
 			preferences.edit().putString("passe", "");
@@ -155,7 +155,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		CheckBox saveLoginCheckBox = (CheckBox) findViewById(R.id.login_cbRemember);
 		EditText loginEditText = (EditText) findViewById(R.id.login_edtLogin);
 		EditText passEditText = (EditText) findViewById(R.id.login_edtPasse);
-		globalState.setUser(new User(loginEditText.getText().toString(), passEditText.getText().toString()));
+		globalState.setUser(new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
 		save = saveLoginCheckBox.isChecked();
 			
 		savePreferences();
@@ -163,7 +163,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		//if(globalState.verifReseau() && !login.equals("") && !pass.equals("")){
 			
 			
-			String response = globalState.requete("login="+globalState.getUser().getLogin()+"&passe="+globalState.getUser().getPass());
+			String response = globalState.requete("login="+globalState.getUser().getLogin()+"&passe="+globalState.getUser().getPasse());
 			Log.i("TP2", "response : " + response);
 			
 			checkLogin(response);

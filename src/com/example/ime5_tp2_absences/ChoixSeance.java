@@ -2,8 +2,6 @@ package com.example.ime5_tp2_absences;
 
 import java.util.ArrayList;
 
-import model.User;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import model.User;
+import model.Users;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class GlobalState extends Application {
 	private DefaultHttpClient client;
 	public boolean connecte = false;
-	private User user = new User();
+	private Users user = new Users();
 	private String sType;
 
 	public void createClient() {
@@ -75,7 +75,7 @@ public class GlobalState extends Application {
 		if (qs != null) {
 			// l'url à utiliser correspond à celle définie dans les préférences
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-			String urlData = preferences.getString("urlData", "http://10.0.2.2/android_absences/data.php");
+			String urlData = preferences.getString("urlData", "http://192.168.1.24/android_absences/data.php");
 			
 			String q = urlData  + "?" + qs;
 			Log.i("TP2", "Querying : " + q);
@@ -123,11 +123,11 @@ public class GlobalState extends Application {
 		}
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
