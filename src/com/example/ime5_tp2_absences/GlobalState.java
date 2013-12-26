@@ -75,7 +75,7 @@ public class GlobalState extends Application {
 		if (qs != null) {
 			// l'url à utiliser correspond à celle définie dans les préférences
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-			String urlData = preferences.getString("urlData", "http://10.0.2.2/android_absences/data.php");
+			String urlData = preferences.getString("urlData", "http://10.0.2.2/AndroidApp/data.php");
 			
 			String q = urlData  + "?" + qs;
 			Log.i("TP2", "Querying : " + q);
