@@ -13,7 +13,7 @@
         android:title="Charger les identifiants automatiquement" />
 
     <EditTextPreference
-        android:defaultValue="http://10.0.2.2/android_absences/data.php"
+        android:defaultValue="http://192.168.1.24/android_absences/data.php"
         android:key="urlData"
         android:summary="Adresse de la page fournissant les données d&apos;absence. Utiliser 10.0.2.2 pour désigner le serveur sur lequel tourne l&apos;émulateur"
         android:title="URL du serveur" />

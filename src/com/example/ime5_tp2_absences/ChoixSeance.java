@@ -1,23 +1,32 @@
 package com.example.ime5_tp2_absences;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import model.Signature;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import GesturePanel.Point;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class ChoixSeance extends Activity {
+public class ChoixSeance extends Activity implements OnClickListener {
 	private GlobalState globalState;
+	public static int ACTICITY_REQUEST_CODE = 42;
+	Object signature;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +36,8 @@ public class ChoixSeance extends Activity {
 		globalState = (GlobalState) getApplication();
 		
 		Spinner spinner = (Spinner) findViewById(R.id.choixConversation_choixConv);
+		Button button = (Button) findViewById(R.id.choixConversation_btnOK);
+		button.setOnClickListener(this);
 		
 		ArrayList<String> list = getSeances();
 		
@@ -60,6 +71,15 @@ public class ChoixSeance extends Activity {
 		getMenuInflater().inflate(R.menu.menu_principal, menu);
 		return true;
 	}
+	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if(requestCode == ACTICITY_REQUEST_CODE && resultCode == RESULT_OK)
+    		signature = new Signature((ArrayList<Point>) data.getSerializableExtra("signature"));
+    	
+    	System.out.println("onActivityResult : " + signature);
+    	super.onActivityResult(requestCode, resultCode, data);
+    }
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -102,5 +122,14 @@ public class ChoixSeance extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent(this, SignatureActivity.class);
+		
+		intent.putExtra("signature", (Serializable) signature);
+		
+		startActivityForResult(intent, ACTICITY_REQUEST_CODE);
 	}
 }
