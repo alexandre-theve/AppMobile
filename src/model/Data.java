@@ -13,12 +13,12 @@ import java.io.Serializable;
 public class Data implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
-    private int idEleve;
-    private int idSeance;
+    private Users eleve;
+    private Seances seance;
     private boolean boolRetard;
     private String remarque;
     private String urlCertificat;
-    private boolean boolAbsent;
+    private boolean boolPresence;
     private Signature signature = null;
 
     public Data() {
@@ -28,14 +28,14 @@ public class Data implements Serializable {
         this.id = id;
     }
 
-    public Data(Integer id, int idEleve, int idSeance, boolean boolRetard, String remarque, String urlCertificat, boolean boolAbsent) {
+    public Data(Integer id, Users eleve, Seances seance, boolean boolRetard, String remarque, String urlCertificat, boolean boolPresence) {
         this.id = id;
-        this.idEleve = idEleve;
-        this.idSeance = idSeance;
+        this.eleve = eleve;
+        this.seance = seance;
         this.boolRetard = boolRetard;
         this.remarque = remarque;
         this.urlCertificat = urlCertificat;
-        this.boolAbsent = boolAbsent;
+        this.boolPresence = boolPresence;
     }
 
     public Integer getId() {
@@ -46,20 +46,20 @@ public class Data implements Serializable {
         this.id = id;
     }
 
-    public int getIdEleve() {
-        return idEleve;
+    public Users getEleve() {
+        return eleve;
     }
 
-    public void setIdEleve(int idEleve) {
-        this.idEleve = idEleve;
+    public void setEleve(Users eleve) {
+        this.eleve = eleve;
     }
 
-    public int getIdSeance() {
-        return idSeance;
+    public Seances getSeance() {
+        return seance;
     }
 
-    public void setIdSeance(int idSeance) {
-        this.idSeance = idSeance;
+    public void setSeance(Seances seance) {
+        this.seance = seance;
     }
 
     public boolean getBoolRetard() {
@@ -86,12 +86,12 @@ public class Data implements Serializable {
         this.urlCertificat = urlCertificat;
     }
 
-    public boolean getBoolAbsent() {
-        return boolAbsent;
+    public boolean getBoolPresence() {
+        return boolPresence;
     }
 
-    public void setBoolAbsent(boolean boolAbsent) {
-        this.boolAbsent = boolAbsent;
+    public void setBoolPresence(boolean boolPresence) {
+        this.boolPresence = boolPresence;
     }
 
     public Signature getSignature() {
