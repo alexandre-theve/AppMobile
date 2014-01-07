@@ -2,8 +2,7 @@ package com.example.ime5_tp2_absences;
 
 import java.util.ArrayList;
 
-import model.Users;
-
+import model.Data;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class UserAdapter extends BaseAdapter {
+public class DataAdapter extends BaseAdapter {
 	private static class ViewHolder 
 	{
 		public TextView nom;
@@ -19,9 +18,9 @@ public class UserAdapter extends BaseAdapter {
 	}
 	
 	private LayoutInflater mInflater;
-	private ArrayList<Users> vList;
+	private ArrayList<Data> vList;
 	
-	public UserAdapter(ArrayList<Users> vList, LayoutInflater inflater) {
+	public DataAdapter(ArrayList<Data> vList, LayoutInflater inflater) {
 		super();
 		this.vList = vList;
 		mInflater = inflater;
@@ -39,7 +38,7 @@ public class UserAdapter extends BaseAdapter {
 		if(convertView == null) 
 		{
 			// On récupère le layout
-			convertView  = mInflater.inflate(R.layout.adapter_user, null);
+			convertView  = mInflater.inflate(R.layout.adapter_data, null);
 			            
 			holder = new ViewHolder();
 			// On place les widgets de notre layout dans le holder
@@ -56,18 +55,19 @@ public class UserAdapter extends BaseAdapter {
 		}
 		    
 		// Dans tous les cas, on récupère le user concerné
-		Users user = (Users)getItem(position);
+		Data data = (Data)getItem(position);
 		
 		// Si cet élément existe vraiment
-		if(user != null) {
+		if(data != null) {
 			// On place dans le holder les informations du user
-			holder.nom.setText(user.getPrenom() + " " + user.getNom());
+			holder.nom.setText(data.getEleve().getPrenom() + " " + data.getEleve().getNom());
+			holder.presence.setChecked(data.getBoolPresence());
 		}
 		return convertView;
 	}
 
 	@Override
-	public Users getItem(int position) {
+	public Data getItem(int position) {
 		return vList.get(position);
 	}
 

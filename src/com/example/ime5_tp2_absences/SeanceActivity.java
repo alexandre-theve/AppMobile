@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import model.Data;
 import model.Seances;
 import model.Users;
 import android.app.Activity;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 public class SeanceActivity extends Activity {
 	private Seances seance;
 	private ListView elevesListView;
-	private ArrayList<Users> eleves;
+	private ArrayList<Data> eleves;
 	private GlobalState globalState;
 	
 	@Override
@@ -47,29 +48,30 @@ public class SeanceActivity extends Activity {
 		elevesListView = (ListView) findViewById(R.id.seance_liste);
 		eleves = getEleves();
 		
-		UserAdapter adapter = new UserAdapter(eleves, LayoutInflater.from(this));
+		DataAdapter adapter = new DataAdapter(eleves, LayoutInflater.from(this));
 		
 	    //On attribut à notre listView l'adapter que l'on vient de créer
 		elevesListView.setAdapter(adapter);
 	}
 	
-	private ArrayList<Users> getEleves(){
+	private ArrayList<Data> getEleves(){
 		String response = globalState.requete("action=getListeEleves&idSeance="+seance.getId());
 		
 		System.out.println("response : " + response);
 		
-		ArrayList<Users> eleves = new ArrayList<Users>();
+		ArrayList<Data> eleves = new ArrayList<Data>();
 		try {
 			JSONObject json = new JSONObject(response);
 			JSONArray elevesJson = json.getJSONArray("eleves");
 			for(int i = 0; i < elevesJson.length(); i++){
 				JSONObject jsonEleve = elevesJson.getJSONObject(i);
 				try {
-					Users user = new Users(jsonEleve);
+					Users eleve = new Users(jsonEleve);
 					
-					System.out.println("getEleves : " + user);
+					System.out.println("getEleves : " + eleve);
+					Data data = new Data(null, eleve, seance, false, "", "", false);
 					
-					eleves.add(user);
+					eleves.add(data);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
