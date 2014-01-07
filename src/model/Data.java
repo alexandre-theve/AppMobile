@@ -19,6 +19,7 @@ public class Data implements Serializable {
     private String remarque;
     private String urlCertificat;
     private boolean boolAbsent;
+    private Signature signature = null;
 
     public Data() {
     }
@@ -93,6 +94,14 @@ public class Data implements Serializable {
         this.boolAbsent = boolAbsent;
     }
 
+    public Signature getSignature() {
+		return signature;
+	}
+
+	public void setSignature(Signature signature) {
+		this.signature = signature;
+	}
+    
     @Override
     public int hashCode() {
         int hash = 0;

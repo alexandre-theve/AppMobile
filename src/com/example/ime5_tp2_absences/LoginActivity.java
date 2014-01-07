@@ -88,7 +88,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_principal, menu);
+		getMenuInflater().inflate(R.menu.menu_login, menu);
 		return true;
 	}
 
@@ -99,12 +99,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 			Intent intent = new Intent(this, Preferences.class);
 			
 			startActivity(intent);
-			break;
-		case R.id.action_compte:
-			// Ouverture de l'activité compte
-			Toast t = Toast
-					.makeText(this, "non implémenté", Toast.LENGTH_SHORT);
-			t.show();
 			break;
 		case R.id.action_logout:
 			logout();
@@ -160,14 +154,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 			
 		savePreferences();
 		
-		//if(globalState.verifReseau() && !login.equals("") && !pass.equals("")){
-			
-			
-			String response = globalState.requete("login="+globalState.getUser().getLogin()+"&passe="+globalState.getUser().getPasse());
-			Log.i("TP2", "response : " + response);
-			
-			checkLogin(response);
-		//} 
+		
+		String response = globalState.requete("login="+globalState.getUser().getLogin()+"&passe="+globalState.getUser().getPasse());
+		Log.i("TP2", "response : " + response);
+		
+		checkLogin(response);
 	}
 	
 	private void checkLogin(String response) {
@@ -192,6 +183,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private void launchSeanceActivity() {
 		Intent intent = new Intent(this, ChoixSeance.class);
 		startActivity(intent);
+		this.finish();
 	}
 
 }
