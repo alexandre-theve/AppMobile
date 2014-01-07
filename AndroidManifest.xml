@@ -30,13 +30,17 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.ime5_tp2_absences.ChoixSeance"
+            android:name="com.example.ime5_tp2_absences.ChoixSeanceActivity"
             android:label="@string/app_name" >
         </activity>
          <activity
             android:name="com.example.ime5_tp2_absences.SignatureActivity"
             android:label="@string/app_name" 
             android:configChanges="orientation|screenSize">
+        </activity>
+        <activity
+            android:name="com.example.ime5_tp2_absences.SeanceActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 
