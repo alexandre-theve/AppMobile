@@ -32,12 +32,11 @@ public class Signature extends ArrayList<Point> implements Serializable {
 		super();
 		dimension = new Dimension(Integer.MAX_VALUE,Integer.MAX_VALUE,0,0);
 		for (android.graphics.Point p : points) {
-			if(p != null)
-				add(new Point(p.x, p.y));
+			add(p);
 		}
 	}
 
-	public boolean add(Point p){
+	public boolean add(android.graphics.Point p){
 		if(p != null){
 			if(p.x < dimension.left)
 	    		dimension.left = p.x;
@@ -48,7 +47,10 @@ public class Signature extends ArrayList<Point> implements Serializable {
 	    	if(p.y > dimension.bottom)
 				dimension.bottom = p.y;	
 		}
-		return super.add(p);
+		if(p != null)
+			return super.add(new Point(p.x, p.y));
+		else
+			return super.add(null);
 	}
 	
 	public Dimension getDimension() {
