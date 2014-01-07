@@ -5,7 +5,12 @@
 package model;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -14,7 +19,7 @@ import java.util.Date;
 public class Seances implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer id;
-    private Date dtDebut;
+    private Date dtDebut = new Date();
     private short duree;
     private String nom;
     private int idEnseignant;
@@ -35,6 +40,16 @@ public class Seances implements Serializable {
         this.idEnseignant = idEnseignant;
         this.idGroupe = idGroupe;
     }
+    
+    public Seances(JSONObject json) throws JSONException, ParseException {
+		this.id = json.getInt("id");
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		this.dtDebut = f.parse(json.getString("dtDebut"));
+        this.duree = Short.parseShort(json.getString("duree"));
+        this.nom = json.getString("nom");
+        this.idEnseignant = json.getInt("idEnseignant");
+        this.idGroupe = json.getInt("idGroupe");
+	}
 
     public Integer getId() {
         return id;
@@ -106,7 +121,8 @@ public class Seances implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Seances[ id=" + id + " ]";
+    	SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        return nom + " - " + f.format(dtDebut);
     }
     
 }

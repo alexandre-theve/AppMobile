@@ -32,10 +32,14 @@ public class Users implements Serializable {
 		this.login = login;
 		this.passe = passe;
 	}
-	
-	public void fill(String jsonUser) throws JSONException {
-		JSONObject json = new JSONObject(jsonUser);
-		nom = json.getString("nom");
+    
+    public Users(JSONObject json) throws JSONException {
+    	fill(json);
+	}
+    
+    public void fill(JSONObject json) throws JSONException {
+    	id = json.getInt("id");
+    	nom = json.getString("nom");
 		prenom = json.getString("prenom");
 	}
     

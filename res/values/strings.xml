@@ -14,7 +14,8 @@
     <string name="monCompte">Mon Compte</string>
     <string name="couleur">Couleur Préférée : </string>
     <string name="choixSeance">Choix Séance</string>
-    <string name="seance">Séance du 13/12/2013</string>
+    <string name="seances_titre">Séances du </string>
+    <string name="seance_titre">Séance </string>
     <string name="preferences">Préférences</string>
     <string name="remember">Se souvenir de moi : </string>
     <string name="title_activity_preferences">Preferences</string>
@@ -24,6 +25,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="ButtonValiderSignature">Valider</string>
     <string name="signature_settings">Effacer</string>
-    
+    <string name="seance_valider">Valider</string>
 
 </resources>

@@ -167,7 +167,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			Boolean connecte = json.getBoolean("connecte");
 			
 			if(connecte){
-				globalState.getUser().fill(response);
+				globalState.getUser().fill(json);
 				
 				launchSeanceActivity();
 			}
@@ -181,7 +181,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	}
 
 	private void launchSeanceActivity() {
-		Intent intent = new Intent(this, ChoixSeance.class);
+		Intent intent = new Intent(this, ChoixSeanceActivity.class);
 		startActivity(intent);
 		this.finish();
 	}

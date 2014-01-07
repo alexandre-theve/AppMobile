@@ -13,13 +13,31 @@
     tools:context=".Login" >
 
     <TextView
-        android:id="@+id/conversation_titre"
+        android:id="@+id/seance_titre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:gravity="center_horizontal"
-        android:text="@string/seance"
+        android:text="@string/seance_titre"
         android:textColor="@color/blanc"
         android:textSize="20pt" />
+
+    <ListView
+        android:id="@+id/seance_liste"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/seance_titre"
+        android:layout_above="@+id/seance_valider" >
+    </ListView>
+
+    <Button
+        android:id="@+id/seance_valider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/seance_valider" />
 
 </RelativeLayout>
