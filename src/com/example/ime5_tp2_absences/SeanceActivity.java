@@ -26,6 +26,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SeanceActivity extends Activity implements DataAdapterSelected {
 	private Seances seance;
@@ -126,5 +127,14 @@ public class SeanceActivity extends Activity implements DataAdapterSelected {
 			item.setBoolRetard(false);
 			((BaseAdapter)elevesListView.getAdapter()).notifyDataSetChanged();
 		}
+	}
+
+	@Override
+	public void onLongClickData(Data item) {
+		Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
+		
+		/*Intent intent = new Intent(this, Compte.class);
+		intent.putExtra("eleve", item.getEleve());
+		startActivity(intent);*/
 	}
 }

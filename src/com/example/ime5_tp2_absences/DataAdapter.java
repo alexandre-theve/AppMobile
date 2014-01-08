@@ -7,15 +7,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class DataAdapter extends BaseAdapter implements OnClickListener {
+public class DataAdapter extends BaseAdapter implements OnClickListener, OnLongClickListener {
 	public interface DataAdapterSelected {
 	    public void onClickData(Data item);
+	    public void onLongClickData(Data item);
 	}
+
 	/*private static class ViewHolder 
 	{
 		public TextView nom;
@@ -41,9 +44,15 @@ public class DataAdapter extends BaseAdapter implements OnClickListener {
 	    mListListener.add(aListener);
 	}
 	
-	private void sendListener(Data item) {
+	private void sendClickListener(Data item) {
 	    for(int i = mListListener.size()-1; i >= 0; i--) {
 	    	mListListener.get(i).onClickData(item);
+	    }
+	}
+	
+	private void sendLongClickListener(Data item) {
+	    for(int i = mListListener.size()-1; i >= 0; i--) {
+	    	mListListener.get(i).onLongClickData(item);
 	    }
 	}
 
@@ -61,6 +70,7 @@ public class DataAdapter extends BaseAdapter implements OnClickListener {
 			// On récupère le layout
 			convertView  = mInflater.inflate(R.layout.adapter_data, null);
 			convertView.setOnClickListener(this); 
+			convertView.setOnLongClickListener(this);
 			
 			
 			//holder = new ViewHolder();
@@ -105,7 +115,16 @@ public class DataAdapter extends BaseAdapter implements OnClickListener {
 		Data data = (Data)v.getTag();
 		
 		//On prévient les listeners qu'il y a eu un clic sur l'item
-		System.out.println("onClick : " + vList + " - " + data);
-		sendListener(data);
+		sendClickListener(data);
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		Data data = (Data)v.getTag();
+		
+		//On prévient les listeners qu'il y a eu un clic sur l'item
+		sendLongClickListener(data);
+		
+		return true;
 	}
 }
