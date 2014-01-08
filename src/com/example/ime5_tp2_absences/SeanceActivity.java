@@ -8,21 +8,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.ime5_tp2_absences.DataAdapter.DataAdapterSelected;
+
 import model.Data;
 import model.Seances;
+import model.Signature;
 import model.Users;
+import GesturePanel.Point;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class SeanceActivity extends Activity {
+public class SeanceActivity extends Activity implements DataAdapterSelected {
 	private Seances seance;
 	private ListView elevesListView;
 	private ArrayList<Data> eleves;
 	private GlobalState globalState;
+
+	public static int ACTICITY_REQUEST_CODE = 42;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +51,24 @@ public class SeanceActivity extends Activity {
 		fillUI();
 	}
 	
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if(requestCode == ACTICITY_REQUEST_CODE && resultCode == RESULT_OK) {
+    		//signature = new Signature((ArrayList<Point>) data.getSerializableExtra("signature"));
+    		
+    		Data eleve = (Data) data.getSerializableExtra("data");
+    		System.out.println("onActivityResult : " + eleve);
+    		
+    		
+    		Data editedEleve = eleves.get(eleves.indexOf(eleve));
+    		editedEleve.setSignature(eleve.getSignature());
+    		editedEleve.setBoolPresence(true);
+    		
+    		((BaseAdapter)elevesListView.getAdapter()).notifyDataSetChanged();
+    	}
+    	super.onActivityResult(requestCode, resultCode, data);
+    }
+	
 	private void fillUI(){
 		TextView titre = (TextView) findViewById(R.id.seance_titre);
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy hh:mm");
@@ -48,8 +77,8 @@ public class SeanceActivity extends Activity {
 		elevesListView = (ListView) findViewById(R.id.seance_liste);
 		eleves = getEleves();
 		
-		DataAdapter adapter = new DataAdapter(eleves, LayoutInflater.from(this));
-		
+		DataAdapter adapter = new DataAdapter(this, eleves, LayoutInflater.from(this));
+		adapter.setOnDataAdapterSelected(this);
 	    //On attribut à notre listView l'adapter que l'on vient de créer
 		elevesListView.setAdapter(adapter);
 	}
@@ -69,7 +98,7 @@ public class SeanceActivity extends Activity {
 					Users eleve = new Users(jsonEleve);
 					
 					System.out.println("getEleves : " + eleve);
-					Data data = new Data(null, eleve, seance, false, "", "", false);
+					Data data = new Data(i, eleve, seance, false, "", "", false);
 					
 					eleves.add(data);
 				} catch (Exception e) {
@@ -83,5 +112,17 @@ public class SeanceActivity extends Activity {
 		}
 		
 		return eleves;
+	}
+
+	@Override
+	public void onClickData(Data item) {		
+		if(!item.getBoolPresence()) {
+			Intent intent = new Intent(this, SignatureActivity.class);
+			intent.putExtra("data", item);
+			startActivityForResult(intent, ACTICITY_REQUEST_CODE);	
+		} else {
+			item.setBoolPresence(false);
+			((BaseAdapter)elevesListView.getAdapter()).notifyDataSetChanged();
+		}
 	}
 }

@@ -53,14 +53,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private void verifConnect(){
 		Boolean conecte = globalState.verifReseau();
 		globalState.alerter(globalState.getsType());
-		if(conecte){
-			// verifier si logé, si oui remplir user et lancer activity
-			
-			String response = globalState.requete("");
-			Log.i("TP2", "response : " + response);
-			
-			checkLogin(response);
-		} 
 	}
 	
 	private void initUI(){
