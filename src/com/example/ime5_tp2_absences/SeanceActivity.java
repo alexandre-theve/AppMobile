@@ -63,6 +63,7 @@ public class SeanceActivity extends Activity implements DataAdapterSelected {
     		Data editedEleve = eleves.get(eleves.indexOf(eleve));
     		editedEleve.setSignature(eleve.getSignature());
     		editedEleve.setBoolPresence(true);
+    		editedEleve.setBoolRetard(eleve.getBoolRetard());
     		
     		((BaseAdapter)elevesListView.getAdapter()).notifyDataSetChanged();
     	}
@@ -122,6 +123,7 @@ public class SeanceActivity extends Activity implements DataAdapterSelected {
 			startActivityForResult(intent, ACTICITY_REQUEST_CODE);	
 		} else {
 			item.setBoolPresence(false);
+			item.setBoolRetard(false);
 			((BaseAdapter)elevesListView.getAdapter()).notifyDataSetChanged();
 		}
 	}
