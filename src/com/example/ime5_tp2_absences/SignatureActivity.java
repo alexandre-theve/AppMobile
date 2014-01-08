@@ -52,6 +52,10 @@ public class SignatureActivity extends Activity implements OnClickListener {
 		case R.id.signature_clear:
 			p.clear();
 			break;
+		case R.id.signature_retard:
+			item.setChecked(!item.isChecked());
+			data.setBoolRetard(item.isChecked());
+			break;
 		}
 
 		return super.onOptionsItemSelected(item);

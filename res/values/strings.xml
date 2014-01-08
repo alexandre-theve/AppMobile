@@ -27,4 +27,5 @@
     <string name="signature_settings">Effacer</string>
     <string name="seance_valider">Valider</string>
 	<string name="seance_retard">Retard</string>
+	<string name="signature_retard">retard</string>
 </resources>
