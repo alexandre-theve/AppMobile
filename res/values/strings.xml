@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">IME5_absences_2013</string>
+    <string name="app_name">Absences</string>
     <string name="action_settings">Préférences</string>
     <string name="action_account">Mon Compte</string>
     <string name="titre">Absences</string>
@@ -26,5 +26,5 @@
     <string name="ButtonValiderSignature">Valider</string>
     <string name="signature_settings">Effacer</string>
     <string name="seance_valider">Valider</string>
-
+	<string name="seance_retard">Retard</string>
 </resources>

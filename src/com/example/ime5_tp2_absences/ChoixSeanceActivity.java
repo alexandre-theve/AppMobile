@@ -30,8 +30,6 @@ import android.widget.Toast;
 
 public class ChoixSeanceActivity extends Activity implements OnClickListener {
 	private GlobalState globalState;
-	public static int ACTICITY_REQUEST_CODE = 42;
-	Object signature;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,15 +91,6 @@ public class ChoixSeanceActivity extends Activity implements OnClickListener {
 		getMenuInflater().inflate(R.menu.menu_principal, menu);
 		return true;
 	}
-	
-	@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	if(requestCode == ACTICITY_REQUEST_CODE && resultCode == RESULT_OK)
-    		signature = new Signature((ArrayList<Point>) data.getSerializableExtra("signature"));
-    	
-    	System.out.println("onActivityResult : " + signature);
-    	super.onActivityResult(requestCode, resultCode, data);
-    }
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
