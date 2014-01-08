@@ -101,10 +101,13 @@ public class ChoixSeanceActivity extends Activity implements OnClickListener {
 			startActivity(intent);
 			break;
 		case R.id.action_compte:
-			// Ouverture de l'activité compte
-			Toast t = Toast
-					.makeText(this, "non implémenté", Toast.LENGTH_SHORT);
-			t.show();
+			// Ouverture de l'activité compte			
+			Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
+			
+			/*Intent intent = new Intent(this, Compte.class);
+			intent.putExtra("eleve", item.getEleve());
+			startActivity(intent);*/
+			
 			break;
 		case R.id.action_logout:
 			logout();
