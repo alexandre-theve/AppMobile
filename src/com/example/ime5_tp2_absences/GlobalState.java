@@ -12,7 +12,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -36,6 +41,27 @@ public class GlobalState extends Application {
 	public void alerter(String s) {
 		Toast t = Toast.makeText(this, s, Toast.LENGTH_LONG);
 		t.show();
+	}
+	
+	public void logout(Context c){
+		String response = this.requete("action=logout");
+		Log.i("TP2", "response : " + response);
+		JSONObject json;
+		try {
+			json = new JSONObject(response);
+			Boolean connecte = json.getBoolean("connecte");
+			if(connecte){
+				Toast.makeText(this,"La deconnexion a échouée! " + json.getString("feedback"), Toast.LENGTH_SHORT).show();
+			}
+			else{
+				Toast.makeText(this,"Deconnecté", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(c, LoginActivity.class);
+				c.startActivity(intent);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public boolean verifReseau() {

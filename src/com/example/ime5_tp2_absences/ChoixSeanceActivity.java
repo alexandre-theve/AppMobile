@@ -110,32 +110,11 @@ public class ChoixSeanceActivity extends Activity implements OnClickListener {
 			
 			break;
 		case R.id.action_logout:
-			logout();
+			globalState.logout(this);
 			break;
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-	
-	private void logout(){
-		String response = globalState.requete("action=logout");
-		Log.i("TP2", "response : " + response);
-		JSONObject json;
-		try {
-			json = new JSONObject(response);
-			Boolean connecte = json.getBoolean("connecte");
-			if(connecte){
-				Toast.makeText(this,"La deconnexion a échouée! " + json.getString("feedback"), Toast.LENGTH_SHORT).show();
-			}
-			else{
-				Toast.makeText(this,"Deconnecté", Toast.LENGTH_SHORT).show();
-				Intent intent = new Intent(this, LoginActivity.class);
-				startActivity(intent);
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
