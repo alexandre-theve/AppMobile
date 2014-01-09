@@ -24,6 +24,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private Boolean save;
 	private SharedPreferences preferences;
 	private GlobalState globalState;
+	 
 	
 	// test commit
 	
@@ -102,8 +103,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.action_compte:
 			// Ouverture de l'activité compte
-			Toast t = Toast
-					.makeText(this, "non implémenté", Toast.LENGTH_SHORT);
+			Toast t = Toast.makeText(this, "Connexion requise", Toast.LENGTH_SHORT);
 			t.show();
 			break;
 		case R.id.action_logout:

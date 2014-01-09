@@ -73,9 +73,8 @@ public class ChoixSeance extends Activity {
 			break;
 		case R.id.action_compte:
 			// Ouverture de l'activité compte
-			Toast t = Toast
-					.makeText(this, "non implémenté", Toast.LENGTH_SHORT);
-			t.show();
+			Intent intent1 = new Intent(this, MonCompte.class);
+			startActivity(intent1);
 			break;
 		case R.id.action_logout:
 			logout();
