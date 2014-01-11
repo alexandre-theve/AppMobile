@@ -14,6 +14,7 @@ public class MonCompte extends Activity {
 		setContentView(R.layout.activity_compte);
 	
 		state = (GlobalState) getApplication();
+		//test commit and push 
 		
 		EditText loginEditText = (EditText) findViewById(R.id.compte_edtLogin);
 		EditText passEditText = (EditText) findViewById(R.id.compte_edtPasse);
