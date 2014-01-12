@@ -66,16 +66,12 @@ public class SeanceActivity extends Activity implements DataAdapterSelected {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
 			Intent intent = new Intent(this, Preferences.class);
-			
 			startActivity(intent);
 			break;
 		case R.id.action_compte:
 			// Ouverture de l'activité compte			
-			Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
-			
-			/*Intent intent = new Intent(this, Compte.class);
-			intent.putExtra("eleve", item.getEleve());
-			startActivity(intent);*/
+			Intent intent2 = new Intent(this, MonCompte.class);
+			startActivity(intent2);
 			
 			break;
 		case R.id.action_logout:
