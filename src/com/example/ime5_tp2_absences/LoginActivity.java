@@ -25,8 +25,6 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private SharedPreferences preferences;
 	private GlobalState globalState;
 	
-	// test commit
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -102,8 +100,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.action_compte:
 			// Ouverture de l'activité compte
-			Toast t = Toast
-					.makeText(this, "non implémenté", Toast.LENGTH_SHORT);
+			Toast t = Toast.makeText(this, "Connexion requise", Toast.LENGTH_SHORT);
 			t.show();
 			break;
 		case R.id.action_logout:
@@ -113,7 +110,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	private void logout(){
 		String response = globalState.requete("action=logout");
 		Log.i("TP2", "response : " + response);
@@ -193,5 +190,4 @@ public class LoginActivity extends Activity implements OnClickListener {
 		Intent intent = new Intent(this, ChoixSeance.class);
 		startActivity(intent);
 	}
-
 }
