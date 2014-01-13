@@ -28,7 +28,7 @@ public class Data implements Serializable {
         this.id = id;
     }
 
-    public Data(Integer id, Users eleve, Seances seance, boolean boolRetard, String remarque, String urlCertificat, boolean boolPresence) {
+    public Data(Integer id, Users eleve, Seances seance, boolean boolRetard, String remarque, String urlCertificat, boolean boolPresence, Signature signature) {
         this.id = id;
         this.eleve = eleve;
         this.seance = seance;
@@ -36,6 +36,7 @@ public class Data implements Serializable {
         this.remarque = remarque;
         this.urlCertificat = urlCertificat;
         this.boolPresence = boolPresence;
+        this.signature = signature;
     }
 
     public Integer getId() {

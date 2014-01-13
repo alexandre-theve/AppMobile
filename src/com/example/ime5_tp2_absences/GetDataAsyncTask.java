@@ -6,6 +6,7 @@ import java.util.Date;
 
 import model.Data;
 import model.Seances;
+import model.Signature;
 import model.Users;
 
 import org.json.JSONArray;
@@ -51,8 +52,19 @@ public class GetDataAsyncTask extends AsyncTask<Void, Void, ArrayList<Data>> {
 				try {
 					Users eleve = new Users(jsonEleve);
 
-					System.out.println("getEleves : " + eleve);
-					Data data = new Data(i, eleve, seance, false, "", "", false);
+					System.out.println("getEleves : " + eleve + " - " + jsonEleve.getString("boolRetard"));
+					Boolean boolRetard;
+					if(!jsonEleve.getString("boolRetard").equals("null"))
+						boolRetard = jsonEleve.getInt("boolRetard") == 1;
+					else
+						boolRetard = false;
+					Boolean boolPresence;
+					if(!jsonEleve.getString("boolPresence").equals("null"))
+						boolPresence = jsonEleve.getInt("boolPresence") == 1;
+					else
+						boolPresence = false;
+					String signature = (!jsonEleve.getString("signature").equals("null")) ? jsonEleve.getString("signature") : "";
+					Data data = new Data(i, eleve, seance, boolRetard, "", "", boolPresence, new Signature(signature));
 
 					eleves.add(data);
 				} catch (Exception e) {

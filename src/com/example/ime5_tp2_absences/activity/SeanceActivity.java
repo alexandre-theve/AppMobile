@@ -169,7 +169,7 @@ public class SeanceActivity extends Activity implements DataAdapterSelected,
 
 	@Override
 	public void onClick(View arg0) {
-		Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Enregistrement", Toast.LENGTH_SHORT).show();
 
 		sendData();
 	}

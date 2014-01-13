@@ -94,10 +94,11 @@ if (isset($_GET["action"]))
 			{
 
 				// Faudrait interdire d'afficher des séances dont l'utilisateur n'est pas enseignant
-				$SQL = "select u.id, u.nom, u.prenom from users u, seances s, membres m   where "; 
-				$SQL .= "s.id = $_GET[idSeance] "; 
-				$SQL .= "AND s.idGroupe = m.idGroupe ";
-				$SQL .= "AND u.id = m.idEleve ";
+				$SQL = "select u.id, u.nom, u.prenom, d.boolPresence, d.boolRetard, d.signature from seances s
+							join membres m on s.idGroupe = m.idGroupe
+								join users u on m.idEleve = u.id
+									left join data d on u.id = d.idEleve and s.id = d.idSeance
+							where s.id = $_GET[idSeance] "; 
 				$tab = parcoursRs(SQLSelect($SQL));		
 				$data["eleves"] = $tab;
 			}
