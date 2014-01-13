@@ -31,7 +31,7 @@ CREATE TABLE `data` (
   `boolRetard` tinyint(1) NOT NULL,
   `remarque` text NOT NULL,
   `urlCertificat` varchar(500) NOT NULL,
-  `boolAbsent` tinyint(1) NOT NULL,
+  `boolPresence` tinyint(1) NOT NULL,
   `signature` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -110,6 +110,7 @@ CREATE TABLE `seances` (
   `nom` varchar(100) NOT NULL,
   `idEnseignant` int(11) NOT NULL,
   `idGroupe` int(11) NOT NULL,
+  `validee` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

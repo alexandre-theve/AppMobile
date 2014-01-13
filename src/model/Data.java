@@ -125,6 +125,5 @@ public class Data implements Serializable {
     @Override
     public String toString() {
         return "model.Data[ id=" + id + " ]";
-    }
-    
+    }  
 }

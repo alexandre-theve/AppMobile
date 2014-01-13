@@ -28,4 +28,7 @@
     <string name="seance_valider">Valider</string>
 	<string name="seance_retard">Retard</string>
 	<string name="signature_retard">retard</string>
+	<string name="login_progress_signing_in">Signing in&#8230;</string>
+	<string name="deconnexion_fail">La deconnexion a échouée! </string>
+	<string name="deconnecte">Deconnecté</string>
 </resources>

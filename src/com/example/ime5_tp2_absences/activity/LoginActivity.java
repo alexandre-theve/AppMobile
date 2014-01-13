@@ -1,13 +1,29 @@
-package com.example.ime5_tp2_absences;
+package com.example.ime5_tp2_absences.activity;
 
 import model.Users;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.ime5_tp2_absences.GlobalState;
+import com.example.ime5_tp2_absences.LoginAsyncTask;
+import com.example.ime5_tp2_absences.LogoutAsyncTask;
+import com.example.ime5_tp2_absences.R;
+import com.example.ime5_tp2_absences.R.id;
+import com.example.ime5_tp2_absences.R.layout;
+import com.example.ime5_tp2_absences.R.menu;
+
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -23,6 +39,8 @@ import android.widget.Toast;
 public class LoginActivity extends Activity implements OnClickListener {
 	private Boolean save;
 	private SharedPreferences preferences;
+	private View mLoginFormView;
+	private View mLoginStatusView;
 	private GlobalState globalState;
 	
 	@Override
@@ -73,6 +91,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 		
 		Button okButton = (Button) findViewById(R.id.login_btnOK);
 		okButton.setEnabled(globalState.verifReseau());
+		
+		mLoginFormView = findViewById(R.id.login_form);
+		mLoginStatusView = findViewById(R.id.login_status);
 	}
 	
 	@Override
@@ -86,41 +107,16 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			Intent intent = new Intent(this, Preferences.class);
+			Intent intent = new Intent(this, PreferencesActivity.class);
 			
 			startActivity(intent);
-			break;
-		case R.id.action_compte:
-			// Ouverture de l'activité compte
-			Toast t = Toast.makeText(this, "Connexion requise", Toast.LENGTH_SHORT);
-			t.show();
-			break;
-		case R.id.action_logout:
-			logout();
 			break;
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
 	
-	private void logout(){
-		String response = globalState.requete("action=logout");
-		Log.i("TP2", "response : " + response);
-		JSONObject json;
-		try {
-			json = new JSONObject(response);
-			Boolean connecte = json.getBoolean("connecte");
-			if(connecte){
-				Toast.makeText(this,"La deconnexion a échouée! " + json.getString("feedback"), Toast.LENGTH_SHORT).show();
-			}
-			else{
-				Toast.makeText(this,"Deconnecté", Toast.LENGTH_SHORT).show();
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	
 	private void getPreferences() {
 		save = preferences.getBoolean("remember", false);
@@ -144,40 +140,13 @@ public class LoginActivity extends Activity implements OnClickListener {
 		CheckBox saveLoginCheckBox = (CheckBox) findViewById(R.id.login_cbRemember);
 		EditText loginEditText = (EditText) findViewById(R.id.login_edtLogin);
 		EditText passEditText = (EditText) findViewById(R.id.login_edtPasse);
-		globalState.setUser(new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
 		save = saveLoginCheckBox.isChecked();
 			
 		savePreferences();
 		
-		
-		String response = globalState.requete("login="+globalState.getUser().getLogin()+"&passe="+globalState.getUser().getPasse());
-		Log.i("TP2", "response : " + response);
-		
-		checkLogin(response);
+		LoginAsyncTask authTask = new LoginAsyncTask(this, ChoixSeanceActivity.class);
+		authTask.execute(new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
 	}
 	
-	private void checkLogin(String response) {
-		try {
-			JSONObject json = new JSONObject(response);
-			Boolean connecte = json.getBoolean("connecte");
-			
-			if(connecte){
-				globalState.getUser().fill(json);
-				
-				launchSeanceActivity();
-			}
-			else{
-				Toast.makeText(this,"Identifiants invalides : " + json.getString("feedback"), Toast.LENGTH_SHORT).show();
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-
-	private void launchSeanceActivity() {
-		Intent intent = new Intent(this, ChoixSeanceActivity.class);
-		startActivity(intent);
-		this.finish();
-	}
+	
 }

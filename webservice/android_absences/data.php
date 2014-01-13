@@ -78,7 +78,7 @@ if (isset($_GET["action"]))
 			} else $clause="";
 			// faudrait que la scolarité puisse afficher n'importe quelle séance
 
-			$SQL = "select id, dtDebut, duree, idEnseignant, idGroupe, nom from seances WHERE idEnseignant=$_SESSION[id] $clause";
+			$SQL = "select id, dtDebut, duree, idEnseignant, idGroupe, nom, validee from seances WHERE idEnseignant=$_SESSION[id] $clause";
 			$tab = parcoursRs(SQLSelect($SQL));		
 			$data["seances"] = $tab;
 		break;
@@ -139,15 +139,33 @@ if (isset($_GET["action"]))
 				//echo "</pre>";
 				foreach ($lstAbsents as $idEleve)
 				{
-					$SQL = "insert into data(idEleve,idSeance,boolAbsent) VALUES('$idEleve','$idSeance','1')"; 
+					$SQL = "insert into data(idEleve,idSeance,boolPresence) VALUES('$idEleve','$idSeance','0')"; 
 					SQLInsert($SQL); 
 				}
 				
 			}
 		break;
 		
-		// setPresences(JSON_presences) : à compléter
-
+		case "setPresences": 
+			if (!isset($_GET["data"]))
+			{
+				$data["feedback"] = "setPresences: entrez les data";	 
+			}
+			else {
+				$data = json_decode($_GET['data']);
+				foreach ($data as $eleve)
+				{
+					$SQL = "insert into data(idEleve,idSeance,boolPresence, boolRetard, signature) VALUES('$eleve->idEleve','$eleve->idSeance','$eleve->boolPresence', '$eleve->boolRetard', '$eleve->signature')"; 
+					SQLInsert($SQL); 
+					
+					$SQL = "update seances set validee='1' where id ='$eleve->idSeance'"; 
+					SQLUpdate($SQL);
+					
+					//var_dump($eleve);
+				}
+			}
+		break;
+		
 
 		default: 
 			$data["feedback"]= "action inconnue"; 

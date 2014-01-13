@@ -1,4 +1,4 @@
-package com.example.ime5_tp2_absences;
+package com.example.ime5_tp2_absences.activity;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -12,6 +12,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import com.example.ime5_tp2_absences.GlobalState;
+import com.example.ime5_tp2_absences.LogoutAsyncTask;
+import com.example.ime5_tp2_absences.R;
+import com.example.ime5_tp2_absences.R.id;
+import com.example.ime5_tp2_absences.R.layout;
+import com.example.ime5_tp2_absences.R.menu;
+import com.example.ime5_tp2_absences.R.string;
+import com.example.ime5_tp2_absences.SeancesAsyncTask;
 
 import GesturePanel.Point;
 import android.app.Activity;
@@ -45,45 +54,10 @@ public class ChoixSeanceActivity extends Activity implements OnClickListener {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		titre.setText(getString(R.string.seances_titre) + " " + format.format(new Date()));
 		
-		ArrayList<Seances> list = getSeances();
-		
-		ArrayAdapter<Seances> dataAdapter = new ArrayAdapter<Seances>(this,
-				android.R.layout.simple_dropdown_item_1line, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(dataAdapter);
-
+		SeancesAsyncTask seancesAsyncTask = new SeancesAsyncTask(this, globalState, spinner);
+		seancesAsyncTask.execute();
 	}
 	
-	private ArrayList<Seances> getSeances(){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String response = globalState.requete("action=getListeSeances&date="+format.format(new Date()));
-		
-		System.out.println("response : " + response);
-		
-		ArrayList<Seances> seances = new ArrayList<Seances>();
-		try {
-			JSONObject json = new JSONObject(response);
-			JSONArray seancesJson = json.getJSONArray("seances");
-			for(int i = 0; i < seancesJson.length(); i++){
-				JSONObject jsonSeance = seancesJson.getJSONObject(i);
-				try {
-					Seances s = new Seances(jsonSeance);
-					
-					System.out.println("getSeances : " + s.getId());
-					
-					seances.add(s);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return seances;
-	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,24 +70,29 @@ public class ChoixSeanceActivity extends Activity implements OnClickListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			Intent intent = new Intent(this, Preferences.class);
+			Intent intent = new Intent(this, PreferencesActivity.class);
 			
 			startActivity(intent);
 			break;
 		case R.id.action_compte:
 			// Ouverture de l'activité compte			
-			Intent intent1 = new Intent(this, MonCompte.class);
+			Intent intent1 = new Intent(this, MonCompteActivity.class);
 			startActivity(intent1);
 			
 			break;
 		case R.id.action_logout:
-			globalState.logout(this);
+			this.logout();
 			break;
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
 
+	private void logout(){
+		LogoutAsyncTask logoutAsyncTask = new LogoutAsyncTask(this);
+		logoutAsyncTask.execute();
+	}
+	
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent(this, SeanceActivity.class);

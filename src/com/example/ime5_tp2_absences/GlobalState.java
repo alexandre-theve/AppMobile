@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ResponseCache;
 
 import model.Users;
 
@@ -15,6 +16,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.ime5_tp2_absences.activity.LoginActivity;
+
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -43,20 +47,35 @@ public class GlobalState extends Application {
 		t.show();
 	}
 	
-	public void logout(Context c){
+	public String logout(){
 		String response = this.requete("action=logout");
 		Log.i("TP2", "response : " + response);
+		
+		return response;
+	}
+
+	public String login(Users user){
+		this.setUser(user);
+		String response = this.requete("login="+this.getUser().getLogin()+"&passe="+this.getUser().getPasse());
+		Log.i("TP2", "response : " + response);
+		
+		return response;
+	}
+	
+	public void goToLogin(Context c, String response) {
 		JSONObject json;
 		try {
 			json = new JSONObject(response);
 			Boolean connecte = json.getBoolean("connecte");
 			if(connecte){
-				Toast.makeText(this,"La deconnexion a échouée! " + json.getString("feedback"), Toast.LENGTH_SHORT).show();
+				Toast.makeText(c,c.getString(R.string.deconnexion_fail) + json.getString("feedback"), Toast.LENGTH_SHORT).show();
 			}
 			else{
-				Toast.makeText(this,"Deconnecté", Toast.LENGTH_SHORT).show();
+				Toast.makeText(c,c.getString(R.string.deconnecte), Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(c, LoginActivity.class);
-				c.startActivity(intent);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				((Activity) c).finish();
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

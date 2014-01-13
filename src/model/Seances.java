@@ -24,6 +24,7 @@ public class Seances implements Serializable {
     private String nom;
     private int idEnseignant;
     private int idGroupe;
+    private Boolean validee;
 
     public Seances() {
     }
@@ -49,6 +50,7 @@ public class Seances implements Serializable {
         this.nom = json.getString("nom");
         this.idEnseignant = json.getInt("idEnseignant");
         this.idGroupe = json.getInt("idGroupe");
+        this.validee = (json.getInt("validee") == 1);
 	}
 
     public Integer getId() {
@@ -124,5 +126,19 @@ public class Seances implements Serializable {
     	SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         return nom + " - " + f.format(dtDebut);
     }
+
+	/**
+	 * @return the validee
+	 */
+	public Boolean getValidee() {
+		return validee;
+	}
+
+	/**
+	 * @param validee the validee to set
+	 */
+	public void setValidee(Boolean validee) {
+		this.validee = validee;
+	}
     
 }

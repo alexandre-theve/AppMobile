@@ -1,6 +1,11 @@
-package com.example.ime5_tp2_absences;
+package com.example.ime5_tp2_absences.activity;
 
 import java.util.ArrayList;
+
+import com.example.ime5_tp2_absences.R;
+import com.example.ime5_tp2_absences.R.id;
+import com.example.ime5_tp2_absences.R.layout;
+import com.example.ime5_tp2_absences.R.menu;
 
 import model.Data;
 import model.Signature;
