@@ -20,17 +20,19 @@ public class SeancesAsyncTask extends AsyncTask<Void, Void, ArrayList<Seances>> 
 	private Context context;
 	private Spinner spinner;
 	private GlobalState globalState;
+	private Date date;
 	
-	public SeancesAsyncTask(Context context, GlobalState globalState, Spinner spinner) {
+	public SeancesAsyncTask(Context context, GlobalState globalState, Spinner spinner, Date date) {
 		this.context = context;
 		this.globalState = globalState;
 		this.spinner = spinner;
+		this.date = date;
 	}
 
 	@Override
 	protected ArrayList<Seances> doInBackground(Void... params) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String response = globalState.requete("action=getListeSeances&date="+format.format(new Date()));
+		String response = globalState.requete("action=getListeSeances&date="+format.format(date));
 		
 		System.out.println("response : " + response);
 		
