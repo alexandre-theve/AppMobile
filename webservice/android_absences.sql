@@ -32,9 +32,9 @@ CREATE TABLE `data` (
   `remarque` text NOT NULL,
   `urlCertificat` varchar(500) NOT NULL,
   `boolPresence` tinyint(1) NOT NULL,
-  `signature` varchar(500) DEFAULT NULL,
+  `signature` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `seances` (
   `nom` varchar(100) NOT NULL,
   `idEnseignant` int(11) NOT NULL,
   `idGroupe` int(11) NOT NULL,
-  `validee` tinyint(1) NULL DEFAULT 0,
+  `validee` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -121,7 +121,7 @@ CREATE TABLE `seances` (
 
 LOCK TABLES `seances` WRITE;
 /*!40000 ALTER TABLE `seances` DISABLE KEYS */;
-INSERT INTO `seances` VALUES (1,'2012-09-17 19:42:45',127,'seance1_iser',1,1),(2,'2012-09-17 19:43:09',127,'seance1_uod',3,2),(3,'2012-09-17 19:50:06',0,'seance2_iser',1,1),(4,'2012-09-17 19:50:35',0,'seance2_uod',3,2),(5,'2014-01-08 07:00:00',4,'IME5',1,1),(6,'2013-12-12 07:00:00',4,'IME5',1,3);
+INSERT INTO `seances` VALUES (1,'2012-09-17 19:42:45',127,'seance1_iser',1,1,0),(2,'2012-09-17 19:43:09',127,'seance1_uod',3,2,0),(3,'2012-09-17 19:50:06',0,'seance2_iser',1,1,0),(4,'2012-09-17 19:50:35',0,'seance2_uod',3,2,0),(5,'2014-01-13 07:00:00',4,'IME5',1,1,1),(6,'2013-12-12 07:00:00',4,'IME5',1,3,0);
 /*!40000 ALTER TABLE `seances` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-08 15:27:13
+-- Dump completed on 2014-01-16 11:17:43
