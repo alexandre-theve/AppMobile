@@ -22,6 +22,16 @@
     <string name="title_activity_compte">Compte</string>
     <string name="title_activity_choix_seance">ChoixSéance</string>
     <string name="title_activity_seance">Séance</string>
+    
+    <string name="title_fiche_eleve">Fiche élève</string>
+    <string name="nom_eleve_string">Nom</string>
+    <string name="prenom_eleve_string">Prenom</string>
+    <string name="nombre_seance_string">Séances assistés</string>
+    <string name="nombre_retard_string">Séances en retard</string>
+    <string name="nombre_absence_string">Séances Absent</string>
+    
+    
+    
     <string name="hello_world">Hello world!</string>
     <string name="ButtonValiderSignature">Valider</string>
     <string name="signature_settings">Effacer</string>

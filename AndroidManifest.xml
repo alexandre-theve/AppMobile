@@ -47,6 +47,10 @@
             android:name="com.example.ime5_tp2_absences.activity.SeanceActivity"
             android:label="@string/app_name" >
         </activity>
+          <activity
+            android:name="com.example.ime5_tp2_absences.activity.Fiche_eleve_Activity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

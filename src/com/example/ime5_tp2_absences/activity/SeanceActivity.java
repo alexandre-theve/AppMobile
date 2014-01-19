@@ -159,12 +159,11 @@ public class SeanceActivity extends Activity implements DataAdapterSelected,
 
 	@Override
 	public void onLongClickData(Data item) {
-		Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
-
-		/*
-		 * Intent intent = new Intent(this, Compte.class);
-		 * intent.putExtra("eleve", item.getEleve()); startActivity(intent);
-		 */
+		//Toast.makeText(this, item.getEleve().getNom(), Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, Fiche_eleve_Activity.class);
+		intent.putExtra("eleve",item); 
+		startActivity(intent);
+		
 	}
 
 	@Override

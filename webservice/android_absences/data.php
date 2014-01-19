@@ -17,8 +17,8 @@ if ( isset($_GET["login"]) && isset($_GET["passe"]) )
 	{
 		$dataUser = mysql_fetch_assoc($tabUsers);
 		$_SESSION["id"] = $dataUser["id"];
-		$data["connecte"] = "true";
-		$data["feedback"] = "entrez action: logout, changerPasse(passe), getListeSeances([date=2013-12-12 08:00]), getListeEleves(idSeance), setAbsents(idSeance,listeIdAbsents), getProfil(idUser)";
+		$data["connecte"] = "true2";
+		$data["feedback"] = "entrez action: logout, changerPasse(passe), getListeSeances([date=2013-12-12 08:00]), getListeEleves(idSeance), setAbsents(idSeance,listeIdAbsents), getProfil(idUser), getnombreSeance(idEleve)";
 		$data["id"] = $dataUser["id"];
 		$data["nom"] = $dataUser["nom"];
 		$data["prenom"] = $dataUser["prenom"];
@@ -38,8 +38,8 @@ if (!isset($_SESSION["id"]))
 }
 else
 {
-	$data["connecte"] = "true";
-	$data["feedback"] = "entrez action: changerPasse(passe),logout, getListeSeances([date=2013-12-12 08:00]), getListeEleves(idSeance),  setAbsents(idSeance,listeIdAbsents), getProfil(idUser)";		 
+	$data["connecte"] = "true2";
+	$data["feedback"] = "entrez action: changerPasse(passe),logout, getListeSeances([date=2013-12-12 08:00]), getListeEleves(idSeance),  setAbsents(idSeance,listeIdAbsents), getProfil(idUser),getnombreSeance(idEleve)";		 
 }
 
 
@@ -101,6 +101,19 @@ if (isset($_GET["action"]))
 							where s.id = $_GET[idSeance] "; 
 				$tab = parcoursRs(SQLSelect($SQL));		
 				$data["eleves"] = $tab;
+			}
+		break;
+		
+		case "getnombreSeance": 
+			if (!isset($_GET["id_eleve"]))
+			{
+				$data["feedback"] = "getnombreSeance: entrez id_eleve";	 
+			}
+			else
+			{
+				$SQL = "SELECT COUNT(*) FROM data d where d.idEleve= $_GET[id_eleve] "; 
+				$nb = parcoursRs(SQLSelect($SQL));		
+				$data = $nb;
 			}
 		break;
 
