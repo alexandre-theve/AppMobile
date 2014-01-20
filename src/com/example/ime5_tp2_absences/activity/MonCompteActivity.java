@@ -8,10 +8,13 @@ import com.example.ime5_tp2_absences.R.layout;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MonCompteActivity extends Activity {
+public class MonCompteActivity extends Activity implements OnClickListener {
 	private GlobalState state ;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +33,13 @@ public class MonCompteActivity extends Activity {
 		passEditText.setText(state.getUser().getPasse());
 		nomEditText.setText(state.getUser().getNom());
 		prenomEditText.setText(state.getUser().getPrenom());
+		
+		Button button = (Button) findViewById(R.id.compte_btnOK);
+		button.setOnClickListener(this);
 }
+
+	@Override
+	public void onClick(View arg0) {
+		finish();
+	}
 }

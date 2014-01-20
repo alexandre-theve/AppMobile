@@ -41,7 +41,8 @@
             android:layout_alignBottom="@+id/textView2"
             android:layout_alignLeft="@+id/nom_eleve"
             android:layout_alignParentRight="true"
-            android:ems="10" />
+            android:ems="10" 
+            android:enabled="false" />
 
         <EditText
             android:id="@+id/nom_eleve"
@@ -51,7 +52,8 @@
             android:layout_alignBottom="@+id/textView1"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView2"
-            android:ems="10" />
+            android:ems="10" 
+            android:enabled="false" />
 
         <TextView
             android:id="@+id/textView2"
@@ -80,9 +82,8 @@
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView5"
             android:ems="10"
-            android:inputType="number" >
-
-            <requestFocus />
+            android:inputType="number" 
+            android:enabled="false" >
         </EditText>
 
         <TextView
@@ -112,7 +113,8 @@
             android:layout_alignLeft="@+id/nb_absence_editText"
             android:layout_alignParentRight="true"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number" 
+            android:enabled="false" />
 
         <EditText
             android:id="@+id/nb_seance_editText"
@@ -123,7 +125,8 @@
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView4"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number" 
+            android:enabled="false" />
 
     </RelativeLayout>
 
