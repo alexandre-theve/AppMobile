@@ -20,6 +20,10 @@ public class Data implements Serializable {
     private String urlCertificat;
     private boolean boolPresence;
     private Signature signature = null;
+    
+    private Integer nbSeances;
+    private Integer nbRetards;
+    private Integer nbAbsences;
 
     public Data() {
     }
@@ -103,7 +107,31 @@ public class Data implements Serializable {
 		this.signature = signature;
 	}
     
-    @Override
+    public Integer getNbSeances() {
+		return nbSeances;
+	}
+
+	public void setNbSeances(Integer nbSeances) {
+		this.nbSeances = nbSeances;
+	}
+
+	public Integer getNbRetards() {
+		return nbRetards;
+	}
+
+	public void setNbRetards(Integer nbRetards) {
+		this.nbRetards = nbRetards;
+	}
+
+	public Integer getNbAbsences() {
+		return nbAbsences;
+	}
+
+	public void setNbAbsences(Integer nbAbsences) {
+		this.nbAbsences = nbAbsences;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

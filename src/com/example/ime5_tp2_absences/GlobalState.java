@@ -48,13 +48,13 @@ public class GlobalState extends Application {
 		t.show();
 	}
 	
-	public void logout(){
-		LogoutAsyncTask logoutAsyncTask = new LogoutAsyncTask(this);
+	public void logout(Context c){
+		LogoutAsyncTask logoutAsyncTask = new LogoutAsyncTask(c);
 		logoutAsyncTask.execute();
 	}
 
-	public void login(Users user){
-		LoginAsyncTask authTask = new LoginAsyncTask(this, ChoixSeanceActivity.class);
+	public void login(Context c, Users user){
+		LoginAsyncTask authTask = new LoginAsyncTask(c, ChoixSeanceActivity.class);
 		authTask.execute(user);
 	}
 	

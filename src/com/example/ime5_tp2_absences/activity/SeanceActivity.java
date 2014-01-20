@@ -94,7 +94,7 @@ public class SeanceActivity extends Activity implements DataAdapterSelected,
 
 			break;
 		case R.id.action_logout:
-			globalState.logout();
+			globalState.logout(this);
 			break;
 		}
 

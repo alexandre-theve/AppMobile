@@ -42,7 +42,11 @@ public class Fiche_eleve_Activity extends Activity{
 		nomEditText.setText(eleve.getEleve().getNom());
 		prenomEditText.setText(eleve.getEleve().getPrenom());
 		
-		eleveAsyncTask = new GetDataEleve(globalState, eleve);
+		EditText nbSeance = (EditText) findViewById(R.id.nb_seance_editText);
+		EditText nbAbsence = (EditText) findViewById(R.id.nb_absence_editText); 
+		EditText nbRetard = (EditText) findViewById(R.id.nb_retard_editText); 
+		
+		eleveAsyncTask = new GetDataEleve(globalState, eleve, nbSeance, nbAbsence, nbRetard);
 		eleveAsyncTask.execute();
 	}
 	@Override
@@ -66,7 +70,7 @@ public class Fiche_eleve_Activity extends Activity{
 
 			break;
 		case R.id.action_logout:
-			globalState.logout();
+			globalState.logout(this);
 			break;
 		}
 		return super.onOptionsItemSelected(item);

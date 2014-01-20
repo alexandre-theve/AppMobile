@@ -111,9 +111,17 @@ if (isset($_GET["action"]))
 			}
 			else
 			{
-				$SQL = "SELECT COUNT(*) FROM data d where d.idEleve= $_GET[id_eleve] "; 
-				$nb = parcoursRs(SQLSelect($SQL));		
-				$data = $nb;
+				$SQL = "SELECT COUNT(*) as nb_seance FROM data d where d.idEleve= $_GET[id_eleve]  and boolPresence = '1'"; 
+				$nb = mysql_fetch_assoc(SQLSelect($SQL));		
+				$data['nb_seance'] = $nb['nb_seance'];
+				
+				$SQL = "SELECT COUNT(*) as nb_absence FROM data d where d.idEleve= $_GET[id_eleve] and boolPresence = '0'"; 
+				$nb = mysql_fetch_assoc(SQLSelect($SQL));		
+				$data['nb_absence'] = $nb['nb_absence'];
+				
+				$SQL = "SELECT COUNT(*) as nb_retard FROM data d where d.idEleve= $_GET[id_eleve] and boolRetard = '1'"; 
+				$nb = mysql_fetch_assoc(SQLSelect($SQL));		
+				$data['nb_retard'] = $nb['nb_retard'];
 			}
 		break;
 

@@ -67,16 +67,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/editText3"
+            android:layout_below="@+id/nb_seance_editText"
             android:layout_marginTop="20dp"
             android:text="@string/nombre_absence_string" />
 
         <EditText
-            android:id="@+id/EditText01"
+            android:id="@+id/nb_absence_editText"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView3"
             android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView5"
             android:ems="10"
             android:inputType="number" >
@@ -89,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/EditText01"
+            android:layout_below="@+id/nb_absence_editText"
             android:layout_marginTop="14dp"
             android:text="@string/nombre_retard_string" />
 
@@ -103,21 +104,23 @@
             android:text="@string/nombre_seance_string" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/nb_retard_editText"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView4"
             android:layout_alignBottom="@+id/textView4"
-            android:layout_alignLeft="@+id/EditText01"
+            android:layout_alignLeft="@+id/nb_absence_editText"
+            android:layout_alignParentRight="true"
             android:ems="10"
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/nb_seance_editText"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView5"
             android:layout_alignBottom="@+id/textView5"
+            android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView4"
             android:ems="10"
             android:inputType="number" />

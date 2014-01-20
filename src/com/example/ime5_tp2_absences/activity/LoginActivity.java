@@ -144,7 +144,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			
 		savePreferences();
 		
-		globalState.login(new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
+		globalState.login(this, new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
 	}
 	
 	

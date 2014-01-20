@@ -102,7 +102,7 @@ public class ChoixSeanceActivity extends Activity implements OnClickListener, On
 
 			break;
 		case R.id.action_logout:
-			globalState.logout();
+			globalState.logout(this);
 			break;
 		}
 
