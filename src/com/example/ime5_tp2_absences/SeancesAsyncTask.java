@@ -69,4 +69,3 @@ public class SeancesAsyncTask extends AsyncTask<Void, Void, ArrayList<Seances>> 
 		spinner.setAdapter(dataAdapter);
 	}
 }
-

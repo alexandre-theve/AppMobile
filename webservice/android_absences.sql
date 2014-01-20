@@ -110,7 +110,7 @@ CREATE TABLE `seances` (
   `nom` varchar(100) NOT NULL,
   `idEnseignant` int(11) NOT NULL,
   `idGroupe` int(11) NOT NULL,
-  `validee` tinyint(1) DEFAULT '0',
+  `validee` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
