@@ -66,17 +66,10 @@ public class Fiche_eleve_Activity extends Activity{
 
 			break;
 		case R.id.action_logout:
-			this.logout();
+			globalState.logout();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 		}
-
-		private void logout(){
-			LogoutAsyncTask logoutAsyncTask = new LogoutAsyncTask(this);
-			logoutAsyncTask.execute();
-		}
-		
-		
 }
 

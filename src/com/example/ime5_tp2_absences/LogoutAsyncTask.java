@@ -3,6 +3,7 @@ package com.example.ime5_tp2_absences;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class LogoutAsyncTask extends AsyncTask<Void, Void, String> {
 	private Context context;
@@ -15,7 +16,10 @@ public class LogoutAsyncTask extends AsyncTask<Void, Void, String> {
 
 	@Override
 	protected String doInBackground(Void... params) {
-		return globalState.logout();
+		String response = globalState.requete("action=logout");
+		Log.i("TP2", "response : " + response);
+		
+		return response;
 	}
 
 	@Override

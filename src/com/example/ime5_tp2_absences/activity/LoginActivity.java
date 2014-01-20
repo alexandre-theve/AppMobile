@@ -144,8 +144,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			
 		savePreferences();
 		
-		LoginAsyncTask authTask = new LoginAsyncTask(this, ChoixSeanceActivity.class);
-		authTask.execute(new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
+		globalState.login(new Users(loginEditText.getText().toString(), passEditText.getText().toString()));
 	}
 	
 	

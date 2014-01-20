@@ -16,6 +16,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.ime5_tp2_absences.activity.ChoixSeanceActivity;
 import com.example.ime5_tp2_absences.activity.LoginActivity;
 
 import android.app.Activity;
@@ -47,19 +48,14 @@ public class GlobalState extends Application {
 		t.show();
 	}
 	
-	public String logout(){
-		String response = this.requete("action=logout");
-		Log.i("TP2", "response : " + response);
-		
-		return response;
+	public void logout(){
+		LogoutAsyncTask logoutAsyncTask = new LogoutAsyncTask(this);
+		logoutAsyncTask.execute();
 	}
 
-	public String login(Users user){
-		this.setUser(user);
-		String response = this.requete("login="+this.getUser().getLogin()+"&passe="+this.getUser().getPasse());
-		Log.i("TP2", "response : " + response);
-		
-		return response;
+	public void login(Users user){
+		LoginAsyncTask authTask = new LoginAsyncTask(this, ChoixSeanceActivity.class);
+		authTask.execute(user);
 	}
 	
 	public void goToLogin(Context c, String response) {

@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -36,10 +37,12 @@ public class LoginAsyncTask extends AsyncTask<Users, Void, String> {
 
 	@Override
 	protected String doInBackground(Users... params) {
-		/*String response = globalState.requete("login="+globalState.getUser().getLogin()+"&passe="+globalState.getUser().getPasse());
-		Log.i("TP2", "response : " + response);*/
+		Users user = params[0];
+		globalState.setUser(user);
+		String response = globalState.requete("login="+user.getLogin()+"&passe="+user.getPasse());
+		Log.i("TP2", "response : " + response);
 		
-		return globalState.login(params[0]);
+		return response;
 	}
 
 	@Override

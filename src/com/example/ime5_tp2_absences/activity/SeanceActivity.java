@@ -94,16 +94,11 @@ public class SeanceActivity extends Activity implements DataAdapterSelected,
 
 			break;
 		case R.id.action_logout:
-			this.logout();
+			globalState.logout();
 			break;
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
-
-	private void logout(){
-		LogoutAsyncTask logoutAsyncTask = new LogoutAsyncTask(this);
-		logoutAsyncTask.execute();
 	}
 	
 	@Override
