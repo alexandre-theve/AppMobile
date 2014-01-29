@@ -17,7 +17,6 @@ public class LogoutAsyncTask extends AsyncTask<Void, Void, String> {
 	@Override
 	protected String doInBackground(Void... params) {
 		String response = globalState.requete("action=logout");
-		Log.i("TP2", "response : " + response);
 		
 		return response;
 	}
@@ -27,3 +26,6 @@ public class LogoutAsyncTask extends AsyncTask<Void, Void, String> {
 		globalState.goToLogin(context, response);
 	}
 }
+
+
+

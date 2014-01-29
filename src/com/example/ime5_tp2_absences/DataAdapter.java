@@ -18,12 +18,6 @@ public class DataAdapter extends BaseAdapter implements OnClickListener, OnLongC
 	    public void onClickData(Data item);
 	    public void onLongClickData(Data item);
 	}
-
-	/*private static class ViewHolder 
-	{
-		public TextView nom;
-		public CheckBox presence;
-	}*/
 	
 	private LayoutInflater mInflater;
 	private ArrayList<Data> vList;

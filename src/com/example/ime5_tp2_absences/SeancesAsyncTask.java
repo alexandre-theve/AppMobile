@@ -28,7 +28,7 @@ public class SeancesAsyncTask extends AsyncTask<Void, Void, ArrayList<Seances>> 
 		this.spinner = spinner;
 		this.date = date;
 	}
-
+	
 	@Override
 	protected ArrayList<Seances> doInBackground(Void... params) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

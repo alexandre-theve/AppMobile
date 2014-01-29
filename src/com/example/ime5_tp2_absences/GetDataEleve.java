@@ -34,7 +34,6 @@ public class GetDataEleve extends AsyncTask<Void, Void, Boolean>{
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		String response = globalState.requete("action=getnombreSeance&id_eleve=" + eleve.getEleve().getId());
-		System.out.println("response : " + response);
 		
 		try {
 			JSONObject json = new JSONObject(response);
@@ -44,7 +43,6 @@ public class GetDataEleve extends AsyncTask<Void, Void, Boolean>{
 			
 			return true;
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
